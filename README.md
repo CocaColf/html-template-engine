@@ -13,21 +13,24 @@ tplEngine(tpl, data);
 let tpl = 
     `
     <div><%title%></div>
-    <%  if(this.isHappy) { %>
-        <p>看书: <% bookName %></p>
+    <%  var key in arr %>
+        <p><% arr[key] %>
     <% } %>
     
+    <% if(this.status !== 1) { %>
+        <div><% option %></div>
+    <% } %>
     <% else {%>
         <div><% saySomething %></div>
     <% } %>
     `
    
 let parsedHTML = tplEngine(tpl, {
-    title: '今天干嘛?',
-    isHappy: true,
-    bookName: '《1984》',
-    saySomething: '睡觉，睡觉'
+    title: '例子',
+    arr: ['apple', 'orange'],
+    option: '重启',
+    saySomething: '当前状态良好'
 });
 ```
 
-这里是我的一个真实需求的解决:
+[这是](https://github.com/CocaColf/html-template-engine/blob/master/real_scene.md)使用它来解决一个真实需求，同时也是因这个需求而编写了这个函数。
